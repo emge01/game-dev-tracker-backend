@@ -14,13 +14,14 @@ enum Status {
 class Project {
     
     private @Id
-    @GeneratedValue String id;
+    @GeneratedValue Long id;
     private String user_id;
     private String title;
     private String engine;
     private String[] platforms;
     private Status status;
 
+    public Project() {}
 
     Project(String title, String engine, String[] platforms) {
         this.title = title;
@@ -33,11 +34,11 @@ class Project {
         return this.title;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
