@@ -37,4 +37,9 @@ class ProjectController {
     Project one(@PathVariable Long id) {
         return repository.findById(id).orElseThrow(() -> new ProjectNotFoundException(id));
     }
+
+    @DeleteMapping("/projects/{id}")
+    void deleteProject(@PathVariable Long id) {
+        repository.deleteById(id);
+    }
 }
