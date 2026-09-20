@@ -2,6 +2,7 @@ package com.emg.game_dev_tracker_backend;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController 
@@ -31,17 +33,18 @@ class ProjectController {
     // Single item
 
     @GetMapping("/projects/{id}")
-    Project one(@PathVariable Long id) {
+    Project one(@PathVariable("id") Long id) {
         return repository.findById(id).orElseThrow(() -> new ProjectNotFoundException(id));
     }
 
     @PostMapping("/projects")
+    @ResponseStatus(HttpStatus.CREATED)
     Project newProject(@RequestBody Project newProject) {
         return repository.save(newProject);
     }
 
     @PutMapping("/projects/{id}")
-    Project replaceProject(@RequestBody Project newProject, @PathVariable Long id) {
+    Project replaceProject(@RequestBody Project newProject, @PathVariable("id") Long id) {
         return repository.findById(id).map(project -> {
             project.setTitle(newProject.getTitle());
             project.setEngine(newProject.getEngine());
@@ -52,7 +55,7 @@ class ProjectController {
     }
 
     @PatchMapping("/projects/{id}")
-    Project updateProjectDetails(@RequestBody Project newProject, @PathVariable Long id) {
+    Project updateProjectDetails(@RequestBody Project newProject, @PathVariable("id") Long id) {
         return repository.findById(id).map(project -> {
             if (newProject.getTitle() != null) {
                 project.setTitle(newProject.getTitle());
@@ -71,7 +74,7 @@ class ProjectController {
     }
 
     @DeleteMapping("/projects/{id}")
-    void deleteProject(@PathVariable Long id) {
+    void deleteProject(@PathVariable("id") Long id) {
         repository.deleteById(id);
     }
 }
