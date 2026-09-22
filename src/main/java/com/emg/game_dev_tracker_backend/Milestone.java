@@ -5,6 +5,8 @@ import java.util.Objects;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 
 enum MilestoneStatus {
     TO_DO, IN_PROGRESS, COMPLETE
@@ -15,25 +17,27 @@ class Milestone {
     
     private @Id
     @GeneratedValue Long id;
-    private Long projectId;
+    @ManyToOne 
+    @JoinColumn(name = "project_id")
+    private Project project;
     private String title;
     private String description;
     private MilestoneStatus status;
 
     public Milestone() {}
 
-    Milestone(Long projectId, String title) {
-        this.projectId = projectId;
+    Milestone(Project project, String title) {
+        this.project = project;
         this.title = title;
         this.status = MilestoneStatus.TO_DO;
     }
 
-    public Long getProjectId() {
-        return projectId;
+    public Project getProject() {
+        return project;
     }
 
-    public void setProjectId(Long projectId) {
-        this.projectId = projectId;
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     public String getTitle() {
@@ -77,7 +81,7 @@ class Milestone {
 
     @Override 
     public String toString() {
-        return "Milestone{" + "id= " + this.id + "project id= " + this.projectId + "title= " + this.title + "}\n";
+        return "Milestone{" + "id= " + this.id + "project= " + this.project + "title= " + this.title + "}\n";
     }
     
 }
