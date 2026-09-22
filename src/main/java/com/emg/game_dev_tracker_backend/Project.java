@@ -95,7 +95,7 @@ class Project {
 
     @Override 
     public String toString() {
-        return "Project{" + "id=" + this.id + ", title='" + this.title + '}';
+        return "Project{" + "id=" + this.id + ", title='" + this.title + "}\n";
     }
 
 }
