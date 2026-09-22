@@ -11,10 +11,15 @@ class LoadDatabase {
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
     @Bean 
-    CommandLineRunner initDatabase(ProjectRepository repository) {
+    CommandLineRunner initDatabase(ProjectRepository repository, MilestoneRepository repository2) {
         return args -> {
-            log.info("Preloading " + repository.save(new Project("Cipheria", "UE5", new String[]{"pc"})));
-            log.info("Preloading " + repository.save(new Project("Split Self", "UE5", new String[]{"pc", "console"})));
+            Project project1 = repository.save(new Project("Test Game 1", "UE5", new String[]{"pc"}));
+            Project project2 = repository.save(new Project("Test Game 2", "UE5", new String[]{"pc", "console"}));
+
+            repository2.save(new Milestone(project1, "Game Design Document"));
+            repository2.save(new Milestone(project1, "Prototype"));
+            repository2.save(new Milestone(project2, "Alpha Build"));
         };
     }
+    
 }

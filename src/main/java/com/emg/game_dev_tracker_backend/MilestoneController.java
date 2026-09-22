@@ -22,8 +22,8 @@ class MilestoneController {
     }
 
     @GetMapping("/projects/{id}/milestones")
-    List<Milestone> allMilestones() {
-        return  repository.findAll();
+    List<Milestone> allMilestones(@PathVariable("id") Long projectId) {
+        return  repository.findByProjectId(projectId);
     }
 
     @GetMapping("/projects/{id}/milestones/{milestoneId}")
