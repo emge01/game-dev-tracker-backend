@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,18 +21,15 @@ class ProjectController {
         this.repository = repository;
     }
 
-    // Aggregate root
-    // tag::get-aggregate-root[]
     @GetMapping("/projects")
-    List<Project> all() {
+    List<Project> allProjects() {
         return repository.findAll();
     }
-    // end::get-aggregate-root[]
 
     // Single item
 
     @GetMapping("/projects/{id}")
-    Project one(@PathVariable("id") Long id) {
+    Project oneProject(@PathVariable("id") Long id) {
         return repository.findById(id).orElseThrow(() -> new ProjectNotFoundException(id));
     }
 
