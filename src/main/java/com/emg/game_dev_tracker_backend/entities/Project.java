@@ -1,4 +1,4 @@
-package com.emg.game_dev_tracker_backend;
+package com.emg.game_dev_tracker_backend.entities;
 
 import java.util.Objects;
 
@@ -11,7 +11,7 @@ enum Status {
 }
 
 @Entity 
-class Project {
+public class Project {
     
     private @Id
     @GeneratedValue Long id;
@@ -23,7 +23,7 @@ class Project {
 
     public Project() {}
 
-    Project(String title, String engine, String[] platforms) {
+    public Project(String title, String engine, String[] platforms) {
         this.title = title;
         this.engine = engine;
         this.platforms = platforms;

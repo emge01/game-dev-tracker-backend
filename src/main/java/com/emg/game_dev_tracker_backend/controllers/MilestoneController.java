@@ -1,4 +1,4 @@
-package com.emg.game_dev_tracker_backend;
+package com.emg.game_dev_tracker_backend.controllers;
 
 import java.util.List;
 
@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.emg.game_dev_tracker_backend.entities.Milestone;
+import com.emg.game_dev_tracker_backend.repositories.MilestoneRepository;
+import com.emg.game_dev_tracker_backend.exceptions.MilestoneNotFoundException;
 
 @RestController 
 class MilestoneController {

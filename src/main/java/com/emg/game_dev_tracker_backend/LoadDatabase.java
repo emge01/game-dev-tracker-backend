@@ -6,6 +6,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.emg.game_dev_tracker_backend.entities.Milestone;
+import com.emg.game_dev_tracker_backend.entities.Project;
+import com.emg.game_dev_tracker_backend.repositories.MilestoneRepository;
+import com.emg.game_dev_tracker_backend.repositories.ProjectRepository;
+
 @Configuration 
 class LoadDatabase {
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);

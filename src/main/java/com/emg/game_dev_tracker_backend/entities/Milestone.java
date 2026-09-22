@@ -1,4 +1,4 @@
-package com.emg.game_dev_tracker_backend;
+package com.emg.game_dev_tracker_backend.entities;
 
 import java.util.Objects;
 
@@ -13,7 +13,7 @@ enum MilestoneStatus {
 }
 
 @Entity 
-class Milestone {
+public class Milestone {
     
     private @Id
     @GeneratedValue Long id;
@@ -26,7 +26,7 @@ class Milestone {
 
     public Milestone() {}
 
-    Milestone(Project project, String title) {
+    public Milestone(Project project, String title) {
         this.project = project;
         this.title = title;
         this.status = MilestoneStatus.TO_DO;
